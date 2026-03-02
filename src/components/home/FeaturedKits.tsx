@@ -7,7 +7,7 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight, ChevronLeft, ChevronRight, Plus, Sparkles } from "lucide-react";
-import { CustomKitDialog } from "./CustomKitDialog";
+import { CustomKitDialog } from "@/components/home/CustomKitDialog";
 
 const kits = [
     {
