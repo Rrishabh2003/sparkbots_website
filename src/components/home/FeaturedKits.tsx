@@ -6,13 +6,14 @@ import Link from "next/link";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Plus, Sparkles } from "lucide-react";
+import { CustomKitDialog } from "./CustomKitDialog";
 
 const kits = [
     {
         id: "starter-kit",
         name: "Starter Kit",
-        age: "6+",
+        classLevel: "Class 1-3",
         price: "₹999",
         image: "/img/0EJAb.jpg",
         tag: "LEGO Compatible",
@@ -21,7 +22,7 @@ const kits = [
     {
         id: "explorer-kit",
         name: "Rover Explorer Kit",
-        age: "8+",
+        classLevel: "Class 4-6",
         price: "₹1,999",
         image: "/img/3EL5W.jpg",
         tag: "10-in-1 Versatility",
@@ -30,7 +31,7 @@ const kits = [
     {
         id: "ai-vision-kit",
         name: "AI Vision Creator Kit",
-        age: "10+",
+        classLevel: "Class 7-10",
         price: "₹2,999",
         image: "/img/49tr0.jpg",
         tag: "Advanced Learning",
@@ -39,7 +40,7 @@ const kits = [
     {
         id: "spark-pro-kit",
         name: "Spark Pro Masterclass",
-        age: "12+",
+        classLevel: "Class 1-10",
         price: "₹5,499",
         image: "/img/M8FHd.jpg",
         tag: "Professional Grade",
@@ -138,7 +139,7 @@ export function FeaturedKits() {
                     className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-8 px-0"
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
-                    {kits.map((kit, index) => (
+                    {[...kits, { id: "custom-kit", name: "Custom Build", isCustom: true }].map((kit, index) => (
                         <motion.div
                             key={kit.id}
                             initial={{ opacity: 0, y: 60 }}
@@ -147,48 +148,79 @@ export function FeaturedKits() {
                             className="min-w-[280px] sm:min-w-[320px] md:min-w-[420px] snap-center px-2 md:px-0"
                         >
                             <div className="aspect-[4/5] relative bg-surface rounded-[32px] p-8 md:p-10 flex flex-col justify-between overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-
-                                <div className="relative z-10">
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 bg-foreground/5 px-3 py-1 rounded-full">
-                                        {kit.tag}
-                                    </span>
-                                    <h3 className="text-3xl md:text-4xl font-black font-outfit text-foreground mt-4 leading-[0.9] uppercase tracking-tighter">
-                                        {kit.name}
-                                    </h3>
-                                    <p className="text-sm text-foreground/40 mt-2 font-medium">{kit.description}</p>
-                                </div>
-
-
-                                <div className="absolute inset-0 z-0 flex items-center justify-center p-10">
-                                    <div className="relative w-full h-full opacity-80 group-hover:opacity-100 grayscale group-hover:grayscale-0 scale-90 group-hover:scale-100 transition-all duration-700">
-                                        <Image
-                                            src={kit.image}
-                                            alt={kit.name}
-                                            fill
-                                            className="object-contain"
-                                        />
-                                    </div>
-                                </div>
-
-
-                                <div className="relative z-10 flex justify-between items-end">
-                                    <div>
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <Badge className="bg-black text-white hover:bg-black rounded-full px-4 py-1 font-black text-[10px]">
-                                                AGE {kit.age}
-                                            </Badge>
-                                            <Badge className="bg-spark-lime text-black hover:bg-spark-lime rounded-full px-4 py-1 font-black text-[10px]">
-                                                NEW
-                                            </Badge>
+                                {"isCustom" in kit ? (
+                                    <>
+                                        <div className="relative z-10">
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-spark-lime bg-spark-lime/10 px-3 py-1 rounded-full">
+                                                Unique Service
+                                            </span>
+                                            <h3 className="text-3xl md:text-4xl font-black font-outfit text-foreground mt-4 leading-[0.9] uppercase tracking-tighter">
+                                                Custom Build
+                                            </h3>
+                                            <p className="text-sm text-foreground/40 mt-2 font-medium">Build a kit tailored to your specific project requirements.</p>
                                         </div>
-                                        <p className="text-2xl font-black font-outfit text-foreground">{kit.price}</p>
-                                    </div>
-                                    <Link href={`/shop/${kit.id}`}>
-                                        <Button size="icon" className="w-14 h-14 rounded-full bg-black hover:bg-spark-lime hover:text-black transition-all group-hover:rotate-45 duration-300">
-                                            <ArrowUpRight className="w-5 h-5" />
-                                        </Button>
-                                    </Link>
-                                </div>
+                                        <div className="absolute inset-0 z-0 flex items-center justify-center p-10 opacity-20">
+                                            <Sparkles className="w-32 h-32 text-spark-lime opacity-20" />
+                                        </div>
+                                        <div className="relative z-10 flex justify-between items-end">
+                                            <div>
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <Badge className="bg-spark-lime text-black hover:bg-spark-lime rounded-full px-4 py-1 font-black text-[10px]">
+                                                        Bespoke
+                                                    </Badge>
+                                                </div>
+                                                <p className="text-2xl font-black font-outfit text-foreground">Quote on request</p>
+                                            </div>
+                                            <CustomKitDialog>
+                                                <Button size="icon" className="w-14 h-14 rounded-full bg-spark-lime text-black hover:bg-white transition-all group-hover:rotate-45 duration-300">
+                                                    <Plus className="w-5 h-5" />
+                                                </Button>
+                                            </CustomKitDialog>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="relative z-10">
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 bg-foreground/5 px-3 py-1 rounded-full">
+                                                {kit.tag}
+                                            </span>
+                                            <h3 className="text-3xl md:text-4xl font-black font-outfit text-foreground mt-4 leading-[0.9] uppercase tracking-tighter">
+                                                {kit.name}
+                                            </h3>
+                                            <p className="text-sm text-foreground/40 mt-2 font-medium">{kit.description}</p>
+                                        </div>
+
+                                        <div className="absolute inset-0 z-0 flex items-center justify-center p-10">
+                                            <div className="relative w-full h-full opacity-80 group-hover:opacity-100 grayscale group-hover:grayscale-0 scale-90 group-hover:scale-100 transition-all duration-700">
+                                                <Image
+                                                    src={kit.image!}
+                                                    alt={kit.name}
+                                                    fill
+                                                    className="object-contain"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="relative z-10 flex justify-between items-end">
+                                            <div>
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <Badge className="bg-black text-white hover:bg-black rounded-full px-4 py-1 font-black text-[10px]">
+                                                        CLASS {kit.classLevel}
+                                                    </Badge>
+                                                    <Badge className="bg-spark-lime text-black hover:bg-spark-lime rounded-full px-4 py-1 font-black text-[10px]">
+                                                        NEW
+                                                    </Badge>
+                                                </div>
+                                                <p className="text-2xl font-black font-outfit text-foreground">{kit.price}</p>
+                                            </div>
+                                            <Link href={`/shop/${kit.id}`}>
+                                                <Button size="icon" className="w-14 h-14 rounded-full bg-black hover:bg-spark-lime hover:text-black transition-all group-hover:rotate-45 duration-300">
+                                                    <ArrowUpRight className="w-5 h-5" />
+                                                </Button>
+                                            </Link>
+                                        </div>
+                                    </>
+                                )}
                             </div>
                         </motion.div>
                     ))}

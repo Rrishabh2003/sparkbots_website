@@ -26,7 +26,7 @@ export default function ProductDetailPage() {
     return (
         <div className="pt-32 pb-20 px-6 md:px-12 bg-background">
             <div className="max-w-7xl mx-auto">
-                    <Button
+                <Button
                     variant="ghost"
                     onClick={() => router.back()}
                     className="mb-8 hover:bg-foreground/5 text-foreground/40 hover:text-foreground transition-colors gap-2 font-black uppercase tracking-widest text-[10px]"
@@ -49,7 +49,7 @@ export default function ProductDetailPage() {
                                 className="object-cover p-8 md:p-12 hover:scale-110 transition-transform duration-1000"
                             />
                             <div className="absolute top-8 left-8 bg-background/90 backdrop-blur-md text-foreground font-black text-[10px] uppercase tracking-[0.2em] px-6 py-2 rounded-full shadow-lg">
-                                {product.age}
+                                {product.classLevel}
                             </div>
                         </div>
 

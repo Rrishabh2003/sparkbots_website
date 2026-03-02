@@ -1,7 +1,7 @@
 export type Product = {
     id: string;
     name: string;
-    age: string;
+    classLevel: string;
     category: "Starter" | "Explorer" | "Creator" | "Subscription";
     price: string;
     image: string;
@@ -13,7 +13,7 @@ export const products: Product[] = [
     {
         id: "starter-kit",
         name: "Spark Starter Kit",
-        age: "6+",
+        classLevel: "Class 1-3",
         category: "Starter",
         price: "₹999",
         image: "/img/0EJAb.jpg",
@@ -23,7 +23,7 @@ export const products: Product[] = [
     {
         id: "explorer-kit",
         name: "Rover Explorer Kit",
-        age: "8+",
+        classLevel: "Class 4-6",
         category: "Explorer",
         price: "₹1,999",
         image: "/img/3EL5W.jpg",
@@ -33,7 +33,7 @@ export const products: Product[] = [
     {
         id: "ai-vision-kit",
         name: "AI Vision Creator Kit",
-        age: "10+",
+        classLevel: "Class 7-10",
         category: "Creator",
         price: "₹2,999",
         image: "/img/49tr0.jpg",
@@ -43,7 +43,7 @@ export const products: Product[] = [
     {
         id: "monthly-spark-box",
         name: "Monthly Spark Box",
-        age: "6-12",
+        classLevel: "Class 1-10",
         category: "Subscription",
         price: "₹1,099/mo",
         image: "/img/M8FHd.jpg",

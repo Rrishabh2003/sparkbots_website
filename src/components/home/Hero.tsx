@@ -32,7 +32,7 @@ export function Hero() {
                     </h1>
 
                     <p className="text-sm sm:text-lg md:text-xl text-muted-foreground font-lexend mb-10 md:mb-16 max-w-2xl mx-auto leading-tight tracking-tight px-0">
-                        SparkBots lighting up kids' potential through hands-on robotics. Expand possibilities and turn ideas into captivating real-life projects.
+                        SparkBots lighting up potential for Class 1-10 students through hands-on robotics. Expand possibilities and turn ideas into captivating real-life projects.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-0">

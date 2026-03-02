@@ -20,7 +20,7 @@ const features = [
     {
         icon: Zap,
         title: "Curriculum Linked",
-        desc: "Professional lessons that align with school STEM curriculum, taking educators out of preparation time.",
+        desc: "Professional lessons that align with Class 1-10 STEM curriculum, taking educators out of preparation time.",
         color: "text-purple-500",
         bg: "bg-purple-50"
     }
@@ -33,7 +33,7 @@ export function WhySparkBots() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20">
                     <div>
                         <h2 className="text-[32px] sm:text-[50px] md:text-[70px] font-black font-outfit text-foreground mb-8 md:mb-10 tracking-tighter uppercase leading-[1] md:leading-[0.8] max-w-xl text-center lg:text-left">
-                            The New Standard for <span className="text-spark-lime italic">Robotics</span>
+                            Standard for <span className="text-spark-lime italic">Class 1-10</span> Robotics
                         </h2>
                     </div>
                     <div className="flex flex-col gap-8 md:gap-[80px]">
