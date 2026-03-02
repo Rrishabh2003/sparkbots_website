@@ -14,7 +14,7 @@ export default function ShopPage() {
 
     const filteredProducts = filter === "All"
         ? products
-        : products.filter(p => p.category === filter || p.age.includes(filter));
+        : products.filter(p => p.category === filter || p.classLevel.includes(filter));
 
     const categories = ["All", "Starter", "Explorer", "Creator", "Subscription"];
 
