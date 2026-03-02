@@ -73,9 +73,9 @@ export function FeaturedKits() {
     };
 
     return (
-        <section ref={sectionRef} className="py-32 px-6 md:px-12 bg-background overflow-hidden">
+        <section ref={sectionRef} className="py-20 md:py-32 px-6 md:px-12 bg-background overflow-hidden">
 
-            <div className="max-w-7xl mx-auto mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+            <div className="max-w-7xl mx-auto mb-12 md:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-8">
                 <div>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -89,7 +89,7 @@ export function FeaturedKits() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="text-[48px] md:text-[80px] font-black font-outfit text-foreground mb-4 tracking-[-0.04em] uppercase leading-[0.9]"
+                        className="text-[40px] sm:text-[48px] md:text-[80px] font-black font-outfit text-foreground mb-4 tracking-[-0.04em] uppercase leading-[0.95] md:leading-[0.9]"
                     >
                         Choose Your <span className="text-spark-lime">Spark</span>
                     </motion.h2>
@@ -97,7 +97,7 @@ export function FeaturedKits() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="text-muted-foreground font-lexend max-w-lg text-lg tracking-tight"
+                        className="text-muted-foreground font-lexend max-w-lg text-base md:text-lg tracking-tight px-1 md:px-0"
                     >
                         Premium robotics kits built to flex with your progress.
                     </motion.p>
@@ -108,7 +108,7 @@ export function FeaturedKits() {
                     initial={{ opacity: 0 }}
                     animate={isInView ? { opacity: 1 } : {}}
                     transition={{ delay: 0.4 }}
-                    className="flex items-center gap-3"
+                    className="flex items-center gap-3 self-start md:self-auto"
                 >
                     <button
                         onClick={() => scrollTo("left")}
