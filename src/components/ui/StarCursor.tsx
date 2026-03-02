@@ -94,7 +94,34 @@ export function StarCursor() {
         const handleMouseMove = (e: MouseEvent) => {
             mouseRef.current = { x: e.clientX, y: e.clientY };
         };
+
+        const handleTouchMove = (e: TouchEvent) => {
+            if (e.touches[0]) {
+                mouseRef.current = {
+                    x: e.touches[0].clientX,
+                    y: e.touches[0].clientY
+                };
+            }
+        };
+
+        const handleTouchStart = (e: TouchEvent) => {
+            if (e.touches[0]) {
+                mouseRef.current = {
+                    x: e.touches[0].clientX,
+                    y: e.touches[0].clientY
+                };
+            }
+        };
+
+        const handleTouchEnd = () => {
+            mouseRef.current = { x: -100, y: -100 };
+        };
+
         window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("touchstart", handleTouchStart, { passive: true });
+        window.addEventListener("touchmove", handleTouchMove, { passive: true });
+        window.addEventListener("touchend", handleTouchEnd);
+        window.addEventListener("touchcancel", handleTouchEnd);
 
         const spawnParticle = () => {
             const { x, y } = mouseRef.current;
@@ -159,6 +186,10 @@ export function StarCursor() {
         return () => {
             window.removeEventListener("resize", resize);
             window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("touchstart", handleTouchStart);
+            window.removeEventListener("touchmove", handleTouchMove);
+            window.removeEventListener("touchend", handleTouchEnd);
+            window.removeEventListener("touchcancel", handleTouchEnd);
             cancelAnimationFrame(frameRef.current);
         };
     }, [drawStar]);
@@ -166,7 +197,7 @@ export function StarCursor() {
     return (
         <canvas
             ref={canvasRef}
-            className="fixed inset-0 z-[9999] pointer-events-none"
+            className="fixed inset-0 z-[9999] pointer-events-none w-full h-full"
             style={{ cursor: "none" }}
         />
     );

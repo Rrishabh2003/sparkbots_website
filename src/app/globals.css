@@ -95,6 +95,13 @@
   --surface-alt: #EBEBEB;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
 .dark {
   --background: oklch(0.12 0 0);
   --foreground: oklch(0.98 0 0);
@@ -137,11 +144,21 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    cursor: none !important;
+  }
+
+  @media (hover: hover) {
+    * {
+      cursor: none !important;
+    }
   }
 
   body {
     @apply bg-background text-foreground;
-    cursor: none !important;
+  }
+
+  @media (hover: hover) {
+    body {
+      cursor: none !important;
+    }
   }
 }

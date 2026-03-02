@@ -89,7 +89,7 @@ export function FeaturedKits() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="text-[40px] sm:text-[48px] md:text-[80px] font-black font-outfit text-foreground mb-4 tracking-[-0.04em] uppercase leading-[0.95] md:leading-[0.9]"
+                        className="text-[32px] sm:text-[48px] md:text-[80px] font-black font-outfit text-foreground mb-4 tracking-[-0.04em] uppercase leading-[1] md:leading-[0.9]"
                     >
                         Choose Your <span className="text-spark-lime">Spark</span>
                     </motion.h2>
@@ -97,7 +97,7 @@ export function FeaturedKits() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="text-muted-foreground font-lexend max-w-lg text-base md:text-lg tracking-tight px-1 md:px-0"
+                        className="text-muted-foreground font-lexend max-w-lg text-sm md:text-lg tracking-tight px-0"
                     >
                         Premium robotics kits built to flex with your progress.
                     </motion.p>
@@ -108,7 +108,7 @@ export function FeaturedKits() {
                     initial={{ opacity: 0 }}
                     animate={isInView ? { opacity: 1 } : {}}
                     transition={{ delay: 0.4 }}
-                    className="flex items-center gap-3 self-start md:self-auto"
+                    className="flex items-center gap-3 self-center md:self-auto"
                 >
                     <button
                         onClick={() => scrollTo("left")}
@@ -135,7 +135,7 @@ export function FeaturedKits() {
                 <div
                     ref={scrollContainerRef}
                     onScroll={handleScroll}
-                    className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-8"
+                    className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-8 px-0"
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
                     {kits.map((kit, index) => (
@@ -144,7 +144,7 @@ export function FeaturedKits() {
                             initial={{ opacity: 0, y: 60 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.6, delay: 0.15 * index + 0.3 }}
-                            className="min-w-[320px] md:min-w-[420px] snap-center"
+                            className="min-w-[280px] sm:min-w-[320px] md:min-w-[420px] snap-center px-2 md:px-0"
                         >
                             <div className="aspect-[4/5] relative bg-surface rounded-[32px] p-8 md:p-10 flex flex-col justify-between overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
 

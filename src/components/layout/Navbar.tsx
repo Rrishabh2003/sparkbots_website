@@ -33,11 +33,11 @@ export function Navbar() {
     return (
         <nav
             className={cn(
-                "fixed left-0 right-0 z-50 transition-all duration-300 ease-in-out px-4",
-                isScrolled ? "top-6" : "top-16"
+                "fixed left-0 right-0 z-50 transition-all duration-300 ease-in-out px-2 sm:px-4",
+                isScrolled ? "top-4 sm:top-6" : "top-8 sm:top-16"
             )}
         >
-            <div className="max-w-6xl mx-auto bg-black/80 backdrop-blur-[16px] border border-white/10 rounded-full px-6 py-2 flex items-center justify-between shadow-2xl relative">
+            <div className="max-w-6xl mx-auto bg-black/80 backdrop-blur-[16px] border border-white/10 rounded-full px-4 sm:px-6 py-2 flex items-center justify-between shadow-2xl relative">
                 {/* Menu */}
                 <div className="flex-1 flex justify-start">
                     <button
@@ -87,13 +87,13 @@ export function Navbar() {
                 </Link>
 
                 {/* Actions */}
-                <div className="flex-1 flex justify-end items-center gap-3">
+                <div className="flex-1 flex justify-end items-center gap-2 sm:gap-3">
                     <ThemeToggle />
-                    <Link href="/login" className="text-white/50 hover:text-white text-[14px] font-medium transition-colors">
+                    <Link href="/login" className="hidden sm:block text-white/50 hover:text-white text-[14px] font-medium transition-colors">
                         Login
                     </Link>
                     <Link href="https://docs.google.com/forms/d/e/1FAIpQLSf_FkB9JsBZersln47y8O7r6GmEf-ib598D_YFZE3SNJ-HA7Q/viewform?usp=dialog" target="_blank">
-                        <Button className="bg-spark-lime text-black hover:bg-white rounded-full px-6 py-2 text-[14px] font-medium transition-all">
+                        <Button className="bg-spark-lime text-black hover:bg-white rounded-full px-4 sm:px-6 py-1.5 sm:py-2 text-[12px] sm:text-[14px] font-medium transition-all">
                             Join
                         </Button>
                     </Link>
