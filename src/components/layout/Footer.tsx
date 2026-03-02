@@ -120,8 +120,8 @@ export function Footer() {
                 </div>
 
 
-                <div className="flex flex-col md:flex-row justify-between items-center gap-8 pt-8 border-none relative">
-                    <div className="flex flex-wrap justify-center items-center gap-2">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-8 pt-12 md:pt-8 border-none relative">
+                    <div className="flex flex-wrap justify-center items-center gap-2 relative z-20">
                         {[
                             { label: "LICENSING", href: "/licensing" },
                             { label: "T&CS", href: "/terms" },
@@ -134,11 +134,11 @@ export function Footer() {
                         ))}
                     </div>
 
-                    <p className="md:absolute md:bottom-[-4%] md:left-1/2 md:transform md:-translate-x-1/2 text-[12px] text-foreground/40 font-medium order-3 md:order-none">
+                    <p className="md:absolute md:bottom-[-4%] md:left-1/2 md:transform md:-translate-x-1/2 text-[12px] text-foreground/40 font-medium order-3 md:order-none relative z-20">
                         © 2026 SPARKBOTS INDIA B.V.
                     </p>
 
-                    <div className="flex items-center gap-1 text-[10px] font-bold tracking-widest text-foreground/40">
+                    <div className="flex items-center gap-1 text-[10px] font-bold tracking-widest text-foreground/40 relative z-20">
                         CREATED BY
                         <span className="bg-[#7B61FF] text-white px-3 py-1.5 rounded-sm ml-2">VARS.ai</span>
                     </div>
@@ -148,9 +148,9 @@ export function Footer() {
 
             <motion.div
                 style={{ y: logoY }}
-                className="absolute bottom-[-1%] md:bottom-[-2%] left-[-50%] md:left-[-5%] w-[200%] md:w-[220%] pointer-events-none select-none overflow-hidden h-[150px] md:h-[300px] flex items-center justify-center"
+                className="absolute bottom-[-2%] md:bottom-[-2%] left-[-50%] md:left-[-5%] w-[200%] md:w-[220%] pointer-events-none select-none overflow-hidden h-[120px] md:h-[300px] flex items-center justify-center z-0"
             >
-                <h1 className="text-[25vw] md:text-[18vw] font-black text-foreground leading-none tracking-tighter opacity-10 md:opacity-100 whitespace-nowrap">
+                <h1 className="text-[28vw] md:text-[18vw] font-black text-foreground leading-none tracking-tighter opacity-5 md:opacity-100 whitespace-nowrap">
                     SPARKBOTS<span className="opacity-0">O</span>SPARKBOTS
                 </h1>
             </motion.div>

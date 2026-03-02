@@ -89,7 +89,7 @@ export function FeaturedKits() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="text-[32px] sm:text-[48px] md:text-[80px] font-black font-outfit text-foreground mb-4 tracking-[-0.04em] uppercase leading-[1] md:leading-[0.9]"
+                        className="text-[28px] sm:text-[48px] md:text-[80px] font-black font-outfit text-foreground mb-4 tracking-[-0.02em] md:tracking-[-0.04em] uppercase leading-[1.1] md:leading-[0.9]"
                     >
                         Choose Your <span className="text-spark-lime">Spark</span>
                     </motion.h2>

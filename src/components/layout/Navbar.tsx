@@ -62,19 +62,21 @@ export function Navbar() {
                                 filter: showIcon ? "blur(6px)" : "blur(0px)",
                             }}
                             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                            className="text-white text-xl font-black font-outfit tracking-tighter whitespace-nowrap absolute"
+                            className="text-white text-xl font-black font-outfit tracking-tighter whitespace-nowrap absolute hidden sm:block"
                         >
                             SPARKBOTS
                         </motion.span>
 
                         <motion.div
                             animate={{
-                                opacity: showIcon ? 1 : 0,
-                                scale: showIcon ? 1 : 0.5,
-                                filter: showIcon ? "blur(0px)" : "blur(6px)",
+                                opacity: showIcon ? 1 : 1, // Stay visible on mobile if text is hidden
+                                scale: showIcon ? 1 : 1,
+                                filter: showIcon ? "blur(0px)" : "blur(0px)",
                             }}
-                            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                            className="w-8 h-8 relative absolute"
+                            className={cn(
+                                "w-8 h-8 relative absolute transition-all duration-450",
+                                !showIcon && "sm:opacity-0 sm:scale-50 sm:blur-sm"
+                            )}
                         >
                             <Image
                                 src="/img/1.svg"
@@ -89,11 +91,11 @@ export function Navbar() {
                 {/* Actions */}
                 <div className="flex-1 flex justify-end items-center gap-2 sm:gap-3">
                     <ThemeToggle />
-                    <Link href="/login" className="hidden sm:block text-white/50 hover:text-white text-[14px] font-medium transition-colors">
+                    <Link href="/login" className="hidden lg:block text-white/50 hover:text-white text-[14px] font-medium transition-colors">
                         Login
                     </Link>
                     <Link href="https://docs.google.com/forms/d/e/1FAIpQLSf_FkB9JsBZersln47y8O7r6GmEf-ib598D_YFZE3SNJ-HA7Q/viewform?usp=dialog" target="_blank">
-                        <Button className="bg-spark-lime text-black hover:bg-white rounded-full px-4 sm:px-6 py-1.5 sm:py-2 text-[12px] sm:text-[14px] font-medium transition-all">
+                        <Button className="bg-spark-lime text-black hover:bg-white rounded-full px-3 sm:px-6 py-1.5 sm:py-2 text-[12px] sm:text-[14px] font-medium transition-all">
                             Join
                         </Button>
                     </Link>
