@@ -28,19 +28,35 @@ export function CustomKitDialog({ children }: { children: React.ReactNode }) {
                         Tell us about your dream robotics project and we'll help you build the perfect kit for Class 1-10.
                     </DialogDescription>
                 </DialogHeader>
-                <form className="space-y-6 pt-4" onSubmit={(e) => { e.preventDefault(); setOpen(false); }}>
+                <form
+                    className="space-y-6 pt-4"
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        const formData = new FormData(e.currentTarget);
+                        const studentClass = formData.get("studentClass") as string;
+                        const projectVision = formData.get("projectVision") as string;
+                        const budget = formData.get("budget") as string;
+
+                        const message = `🚀 *New Custom Build Request*\n\n*Student Class:* ${studentClass}\n*Project Vision:* ${projectVision}\n*Budget:* ${budget}`;
+                        const encodedMessage = encodeURIComponent(message);
+                        const whatsappUrl = `https://wa.me/918674987240?text=${encodedMessage}`;
+
+                        window.open(whatsappUrl, "_blank");
+                        setOpen(false);
+                    }}
+                >
                     <div className="space-y-4">
                         <div className="grid gap-2">
                             <label className="text-xs font-black uppercase tracking-widest text-foreground/40">Student Class</label>
-                            <Input placeholder="e.g. Class 7" className="bg-foreground/5 border-none" />
+                            <Input name="studentClass" required placeholder="e.g. Class 7" className="bg-foreground/5 border-none" />
                         </div>
                         <div className="grid gap-2">
                             <label className="text-xs font-black uppercase tracking-widest text-foreground/40">Project Vision</label>
-                            <Textarea placeholder="Describe what you want to build..." className="bg-foreground/5 border-none min-h-[100px]" />
+                            <Textarea name="projectVision" required placeholder="Describe what you want to build..." className="bg-foreground/5 border-none min-h-[100px]" />
                         </div>
                         <div className="grid gap-2">
                             <label className="text-xs font-black uppercase tracking-widest text-foreground/40">Budget range (₹)</label>
-                            <Input placeholder="e.g. ₹2000 - ₹5000" className="bg-foreground/5 border-none" />
+                            <Input name="budget" required placeholder="e.g. ₹2000 - ₹5000" className="bg-foreground/5 border-none" />
                         </div>
                     </div>
                     <Button type="submit" className="w-full bg-spark-lime text-black hover:bg-white font-black uppercase tracking-widest py-6 rounded-xl">

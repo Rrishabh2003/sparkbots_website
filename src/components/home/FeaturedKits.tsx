@@ -13,7 +13,7 @@ const kits = [
     {
         id: "starter-kit",
         name: "Starter Kit",
-        classLevel: "Class 1-3",
+        classLevel: "1-3",
         price: "₹999",
         image: "/img/0EJAb.jpg",
         tag: "LEGO Compatible",
@@ -22,7 +22,7 @@ const kits = [
     {
         id: "explorer-kit",
         name: "Rover Explorer Kit",
-        classLevel: "Class 4-6",
+        classLevel: "4-6",
         price: "₹1,999",
         image: "/img/3EL5W.jpg",
         tag: "10-in-1 Versatility",
@@ -31,7 +31,7 @@ const kits = [
     {
         id: "ai-vision-kit",
         name: "AI Vision Creator Kit",
-        classLevel: "Class 7-10",
+        classLevel: "7-10",
         price: "₹2,999",
         image: "/img/49tr0.jpg",
         tag: "Advanced Learning",
@@ -40,7 +40,7 @@ const kits = [
     {
         id: "spark-pro-kit",
         name: "Spark Pro Masterclass",
-        classLevel: "Class 1-10",
+        classLevel: "1-10",
         price: "₹5,499",
         image: "/img/M8FHd.jpg",
         tag: "Professional Grade",
