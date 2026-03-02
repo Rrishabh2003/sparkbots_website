@@ -91,7 +91,7 @@ export default function ShopPage() {
                                         />
                                         <div className="absolute top-6 left-6 z-10 flex gap-2">
                                             <div className="bg-background/90 backdrop-blur-md text-foreground font-black rounded-full px-4 py-1 text-[10px] uppercase tracking-[0.2em] shadow-sm">
-                                                {product.age}
+                                                {product.classLevel}
                                             </div>
                                             <div className="bg-black/80 backdrop-blur-md text-spark-lime font-black rounded-full px-4 py-1 text-[10px] uppercase tracking-[0.2em] shadow-sm">
                                                 {product.category}
