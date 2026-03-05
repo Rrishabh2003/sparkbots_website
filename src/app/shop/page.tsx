@@ -7,10 +7,13 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ShoppingCart, Filter, Search } from "lucide-react";
+import { ShoppingCart, Filter, Search, ArrowRight } from "lucide-react";
+import { useRazorpay } from "@/hooks/useRazorpay";
+import { CheckoutDialog } from "@/components/shared/CheckoutDialog";
 
 export default function ShopPage() {
     const [filter, setFilter] = useState<string>("All");
+    const { handlePayment } = useRazorpay();
 
     const filteredProducts = filter === "All"
         ? products
@@ -104,15 +107,28 @@ export default function ShopPage() {
                                             <h3 className="text-2xl font-black font-outfit text-foreground uppercase tracking-tight group-hover:text-spark-lime transition-colors">
                                                 {product.name}
                                             </h3>
-                                            <span className="text-xl font-black text-spark-lime font-lexend">{product.price}</span>
+                                            {product.id === "starter-kit" && (
+                                                <span className="text-xl font-black text-spark-lime font-lexend">{product.price}</span>
+                                            )}
                                         </div>
                                         <p className="text-muted-foreground text-sm leading-snug tracking-tight mb-8 flex-grow font-lexend">
                                             {product.description}
                                         </p>
-                                        <Button className="w-full rounded-full py-6 font-black uppercase tracking-widest bg-black text-spark-lime hover:bg-slate-900 flex items-center justify-center gap-2 group/btn text-[10px]">
-                                            <ShoppingCart className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
-                                            Add to Cart
-                                        </Button>
+                                        {product.id === "starter-kit" ? (
+                                            <CheckoutDialog>
+                                                <Button
+                                                    onClick={(e) => e.stopPropagation()}
+                                                    className="w-full rounded-full py-6 font-black uppercase tracking-widest bg-spark-lime text-black hover:bg-white transition-all flex items-center justify-center gap-2 text-[10px]"
+                                                >
+                                                    Buy Now
+                                                    <ArrowRight className="w-3.5 h-3.5" />
+                                                </Button>
+                                            </CheckoutDialog>
+                                        ) : (
+                                            <Button disabled className="w-full rounded-full py-6 font-black uppercase tracking-widest bg-black/50 text-white/40 flex items-center justify-center gap-2 text-[10px] cursor-not-allowed">
+                                                Coming Soon
+                                            </Button>
+                                        )}
                                     </div>
                                 </motion.div>
                             </Link>

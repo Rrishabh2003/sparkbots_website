@@ -6,8 +6,10 @@ import Link from "next/link";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Plus, Sparkles } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Plus, Sparkles, ShoppingCart } from "lucide-react";
 import { CustomKitDialog } from "@/components/home/CustomKitDialog";
+import { useRazorpay } from "@/hooks/useRazorpay";
+import { CheckoutDialog } from "@/components/shared/CheckoutDialog";
 
 const kits = [
     {
@@ -53,6 +55,7 @@ export function FeaturedKits() {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
     const [activeIndex, setActiveIndex] = useState(0);
+    const { handlePayment } = useRazorpay();
 
     const scrollTo = (direction: "left" | "right") => {
         if (!scrollContainerRef.current) return;
@@ -207,17 +210,38 @@ export function FeaturedKits() {
                                                     <Badge className="bg-black text-white hover:bg-black rounded-full px-4 py-1 font-black text-[10px]">
                                                         CLASS {kit.classLevel}
                                                     </Badge>
-                                                    <Badge className="bg-spark-lime text-black hover:bg-spark-lime rounded-full px-4 py-1 font-black text-[10px]">
-                                                        NEW
-                                                    </Badge>
+                                                    {kit.id === "starter-kit" ? (
+                                                        <Badge className="bg-spark-lime text-black hover:bg-spark-lime rounded-full px-4 py-1 font-black text-[10px]">
+                                                            NEW
+                                                        </Badge>
+                                                    ) : (
+                                                        <Badge variant="outline" className="border-foreground/10 text-foreground/40 rounded-full px-4 py-1 font-black text-[10px]">
+                                                            COMING SOON
+                                                        </Badge>
+                                                    )}
                                                 </div>
-                                                <p className="text-2xl font-black font-outfit text-foreground">{kit.price}</p>
+                                                {kit.id === "starter-kit" ? (
+                                                    <p className="text-2xl font-black font-outfit text-foreground">{kit.price}</p>
+                                                ) : (
+                                                    <p className="text-lg font-black font-outfit text-foreground/40 uppercase tracking-tight">Coming Soon</p>
+                                                )}
                                             </div>
-                                            <Link href={`/shop/${kit.id}`}>
-                                                <Button size="icon" className="w-14 h-14 rounded-full bg-black hover:bg-spark-lime hover:text-black transition-all group-hover:rotate-45 duration-300">
-                                                    <ArrowUpRight className="w-5 h-5" />
-                                                </Button>
-                                            </Link>
+                                            {kit.id === "starter-kit" ? (
+                                                <CheckoutDialog>
+                                                    <Button
+                                                        size="icon"
+                                                        className="w-14 h-14 rounded-full bg-spark-lime text-black hover:bg-white transition-all group-hover:rotate-45 duration-300 shadow-xl flex items-center justify-center"
+                                                    >
+                                                        <ShoppingCart className="w-5 h-5" />
+                                                    </Button>
+                                                </CheckoutDialog>
+                                            ) : (
+                                                <Link href={`/shop/${kit.id}`}>
+                                                    <Button size="icon" className="w-14 h-14 rounded-full bg-black hover:bg-spark-lime hover:text-black transition-all group-hover:rotate-45 duration-300">
+                                                        <ArrowUpRight className="w-5 h-5" />
+                                                    </Button>
+                                                </Link>
+                                            )}
                                         </div>
                                     </>
                                 )}

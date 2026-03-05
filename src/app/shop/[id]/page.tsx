@@ -6,13 +6,16 @@ import { products } from "@/lib/products";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, ShoppingCart, ShieldCheck, Zap, Clock, Package } from "lucide-react";
+import { ArrowLeft, ShoppingCart, ShieldCheck, Zap, Clock, Package, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useRazorpay } from "@/hooks/useRazorpay";
+import { CheckoutDialog } from "@/components/shared/CheckoutDialog";
 
 export default function ProductDetailPage() {
     const { id } = useParams();
     const router = useRouter();
     const product = products.find((p) => p.id === id);
+    const { handlePayment } = useRazorpay();
 
     if (!product) {
         return (
@@ -76,8 +79,14 @@ export default function ProductDetailPage() {
                                 {product.name}
                             </h1>
                             <div className="flex items-center gap-6 mb-6">
-                                <span className="text-3xl font-black text-spark-lime font-lexend">{product.price}</span>
-                                <div className="bg-green-50 text-green-600 font-black text-[10px] uppercase tracking-[0.2em] px-4 py-1 rounded-full">In Stock</div>
+                                {product.id === "starter-kit" ? (
+                                    <>
+                                        <span className="text-3xl font-black text-spark-lime font-lexend">{product.price}</span>
+                                        <div className="bg-spark-lime/10 text-spark-lime font-black text-[10px] uppercase tracking-[0.2em] px-4 py-1 rounded-full border border-spark-lime/20">In Stock</div>
+                                    </>
+                                ) : (
+                                    <div className="bg-orange-50 text-orange-500 font-black text-[10px] uppercase tracking-[0.2em] px-4 py-1 rounded-full">Coming Soon</div>
+                                )}
                             </div>
                             <p className="text-muted-foreground font-lexend text-lg leading-snug tracking-tight">
                                 {product.description}
@@ -102,13 +111,21 @@ export default function ProductDetailPage() {
                         </div>
 
                         <div className="flex flex-col gap-4 mb-12">
-                            <Button size="lg" className="rounded-full py-8 text-sm font-black uppercase tracking-widest shadow-2xl bg-black text-spark-lime hover:bg-slate-900 hover:scale-[1.02] transition-all gap-3">
-                                <ShoppingCart className="w-6 h-6" />
-                                Add to Cart
-                            </Button>
-                            <Button size="lg" variant="outline" className="rounded-full py-8 text-sm font-black uppercase tracking-widest border-2 border-foreground/5 hover:bg-foreground/5 transition-all">
-                                Buy for School
-                            </Button>
+                            {product.id === "starter-kit" ? (
+                                <CheckoutDialog>
+                                    <Button
+                                        size="lg"
+                                        className="rounded-full py-8 text-sm font-black uppercase tracking-widest shadow-2xl bg-spark-lime text-black hover:bg-white transition-all flex items-center justify-center gap-2 w-full"
+                                    >
+                                        Buy Now
+                                        <ArrowRight className="w-5 h-5" />
+                                    </Button>
+                                </CheckoutDialog>
+                            ) : (
+                                <Button size="lg" disabled className="rounded-full py-8 text-sm font-black uppercase tracking-widest shadow-2xl bg-black/50 text-white/40 cursor-not-allowed">
+                                    Coming Soon
+                                </Button>
+                            )}
                         </div>
 
                         {/* Trust Badges */}

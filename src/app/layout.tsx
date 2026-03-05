@@ -13,6 +13,7 @@ const lexend = Lexend({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sparkbots.in"),
   title: "SparkBots | Best Robotics Kit for Kids in India | STEM Educational Toys",
   description: "Premium, BIS-certified robotics kits for kids ages 6-12. Empowering the next generation of engineers with hands-on STEM learning. The Apple of kids robotics.",
   keywords: "robotics kit for kids, best STEM toys India, robotics kit for class 1, educational toys for 10 year olds, SparkBots India, ATL lab kit",
@@ -28,6 +29,7 @@ import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { StarCursor } from "@/components/ui/StarCursor";
 import { ThemeProvider } from "@/lib/theme-context";
+import { ToastProvider } from "@/components/ui/toast";
 
 export default function RootLayout({
   children,
@@ -40,20 +42,22 @@ export default function RootLayout({
         className={`${outfit.variable} ${lexend.variable} font-lexend antialiased selection:bg-primary selection:text-white`}
       >
         <ThemeProvider>
-          <div className="flex flex-col min-h-screen">
-            <div className="relative z-20 bg-background min-h-screen">
-              <AnnouncementBar />
-              <Navbar />
-              <main>
-                {children}
-              </main>
+          <ToastProvider>
+            <div className="flex flex-col min-h-screen">
+              <div className="relative z-20 bg-background min-h-screen">
+                <AnnouncementBar />
+                <Navbar />
+                <main>
+                  {children}
+                </main>
+              </div>
+              <div className="sticky bottom-0 z-10 w-full">
+                <Footer />
+              </div>
+              <WhatsAppButton />
+              <StarCursor />
             </div>
-            <div className="sticky bottom-0 z-10 w-full">
-              <Footer />
-            </div>
-            <WhatsAppButton />
-            <StarCursor />
-          </div>
+          </ToastProvider>
         </ThemeProvider>
       </body>
     </html>
